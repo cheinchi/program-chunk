@@ -1,0 +1,89 @@
+{
+  "about.qmd": {
+    "about.html": "84dcd509"
+  },
+  "posts/post-with-code/index.qmd": {
+    "index.html": "f7d41275"
+  },
+  "posts/welcome/index.qmd": {
+    "index.html": "8d6ba40e"
+  },
+  "index.qmd": {
+    "index.html": "04488a39"
+  },
+  "posts/test.qmd": {
+    "test.html": "5416775f"
+  },
+  "posts/quarto-ipydemo.ipynb": {
+    "quarto-ipydemo.html": "4f7be01a"
+  },
+  "posts/post-with-code/Untitled1.ipynb": {
+    "Untitled1.html": "bd1df983"
+  },
+  "posts/post-with-code/Untitled.ipynb": {
+    "Untitled.html": "b16385a4"
+  },
+  "posts/post-with-code/Untitled2.ipynb": {
+    "Untitled2.html": "48b635cd"
+  },
+  "posts/quarto-ipydemo/quarto-ipydemo.ipynb": {
+    "quarto-ipydemo.html": "54d0a52b"
+  },
+  "posts/bqplot.ipynb": {
+    "bqplot.html": "5f1e2ed2"
+  },
+  "posts/advanced/ggplot2-advanced.ipynb": {
+    "ggplot2-advanced.html": "0a3fa849"
+  },
+  "posts/map-R.ipynb": {
+    "map-R.html": "cc2a751b"
+  },
+  "posts/quarto.qmd": {
+    "quarto.html": "547b4c65"
+  },
+  "posts/api.ipynb": {
+    "api.html": "1d37bf9c"
+  },
+  "posts/SNA.ipynb": {
+    "SNA.html": "416a912e"
+  },
+  "posts/random_matplot.ipynb": {
+    "random_matplot.html": "3278181f"
+  },
+  "posts/asscoiation_analysis.ipynb": {
+    "asscoiation_analysis.html": "f67cb9a5"
+  },
+  "posts/auc-curve.ipynb": {
+    "auc-curve.html": "7f20d5d6"
+  },
+  "posts/python_map_folium0907.ipynb": {
+    "python_map_folium0907.html": "0177ff4d"
+  },
+  "posts/out-bag-es.ipynb": {
+    "out-bag-es.html": "c9b1c9ef"
+  },
+  "posts/python学习笔记0922.ipynb": {
+    "python学习笔记0922.html": "8fcd17f9"
+  },
+  "posts/python基础0907.ipynb": {
+    "python基础0907.html": "63a6a7fc"
+  },
+  "posts/AUC-jl.ipynb": {
+    "AUC-jl.html": "2901b8b9"
+  },
+  "posts/data-mining-bining.ipynb": {
+    "data-mining-bining.html": "d9c4c85c"
+  },
+  "posts/termplot.ipynb": {
+    "termplot.html": "d760337a"
+  },
+  "posts/DR2.ipynb": {
+    "DR2.html": "01c4547c"
+  },
+  "posts/optim.ipynb": {
+    "optim.html": "d3a64168"
+  },
+  "posts/2022-09-11-api.ipynb": {
+    "2022-09-11-api.html": "1affaf69"
+  }
+}

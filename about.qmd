@@ -1,0 +1,24 @@
+---
+title: "About"
+image: logo.jpeg
+about:
+  template: jolla
+  links:
+    - icon: linkedin
+      text: LinkedIn
+      href: https://www.linkedin.cn/incareer/in/ACoAADV2XYkBXNiTPysr7a1w67OFOSpxbo12o2o
+    - icon: github
+      text: Github
+      href: https://github.com/cheinchi
+---
+
+
+This is a set of some coding project or programming methods. Usually I select to use `Python`, `R` and `Julia` as my programming languages. The order by  frequency of usuage and proficiency is `R` > `Python` > `Julia`. And this website also a key to help to master the programming skills in different language.
+
+## Why create another website
+The [original website](www.jianqihuang.com) is built by Hugo and Rmarkdown. It has some limits in support the different formats. In the other hand, it reflects the strongness of Quarto. Moreover, It will be more concise to using and building another website for a specific work.
+
+I found some bug in Quarto that the dynamic plot couldn't display. If you know how to fix it I will appreciate for your annotation. My email: cheinchi@163.com.
+
+
+

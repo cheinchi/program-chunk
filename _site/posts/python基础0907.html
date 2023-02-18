@@ -1,0 +1,1004 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.124">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Blog – python基础0907</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="../styles.css">
+</head>
+
+<body class="nav-fixed fullcontent">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Blog</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../about.html" rel="" target="">
+ <span class="menu-text">About</span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/cheinchi" rel="" target=""><i class="bi bi-github" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+</ul>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    
+<!-- main -->
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+
+<h1>
+Table of Contents<span class="tocSkip"></span>
+</h1>
+<div class="toc">
+<ul class="toc-item">
+<li>
+<span><a href="#jupyter-中的魔法函数" data-toc-modified-id="jupyter-中的魔法函数-1"><span class="toc-item-num">1&nbsp;&nbsp;</span>jupyter 中的魔法函数</a></span>
+<ul class="toc-item">
+<li>
+<span><a href="#%lsmagic" data-toc-modified-id="%lsmagic-1.1"><span class="toc-item-num">1.1&nbsp;&nbsp;</span>%lsmagic</a></span>
+</li>
+<li>
+<span><a href="#%matplotlib-inline-函数" data-toc-modified-id="%matplotlib-inline-函数-1.2"><span class="toc-item-num">1.2&nbsp;&nbsp;</span>%matplotlib inline 函数</a></span>
+</li>
+<li>
+<span><a href="#%-timeit-函数" data-toc-modified-id="%-timeit-函数-1.3"><span class="toc-item-num">1.3&nbsp;&nbsp;</span>% timeit 函数</a></span>
+</li>
+<li>
+<span><a href="#%%writefile函数" data-toc-modified-id="%%writefile函数-1.4"><span class="toc-item-num">1.4&nbsp;&nbsp;</span>%%writefile函数</a></span>
+</li>
+</ul>
+</li>
+<li>
+<span><a href="#数据类型" data-toc-modified-id="数据类型-2"><span class="toc-item-num">2&nbsp;&nbsp;</span>数据类型</a></span>
+<ul class="toc-item">
+<li>
+<ul class="toc-item">
+<li>
+<span><a href="#title" data-toc-modified-id="title-2.0.1"><span class="toc-item-num">2.0.1&nbsp;&nbsp;</span>title</a></span>
+</li>
+<li>
+<span><a href="#format()" data-toc-modified-id="format()-2.0.2"><span class="toc-item-num">2.0.2&nbsp;&nbsp;</span>format()</a></span>
+</li>
+</ul>
+</li>
+<li>
+<span><a href="#list" data-toc-modified-id="list-2.1"><span class="toc-item-num">2.1&nbsp;&nbsp;</span>list</a></span>
+<ul class="toc-item">
+<li>
+<span><a href="#添加列表元素" data-toc-modified-id="添加列表元素-2.1.1"><span class="toc-item-num">2.1.1&nbsp;&nbsp;</span>添加列表元素</a></span>
+</li>
+<li>
+<span><a href="#删除列表元素" data-toc-modified-id="删除列表元素-2.1.2"><span class="toc-item-num">2.1.2&nbsp;&nbsp;</span>删除列表元素</a></span>
+</li>
+<li>
+<span><a href="#全局内置函数" data-toc-modified-id="全局内置函数-2.1.3"><span class="toc-item-num">2.1.3&nbsp;&nbsp;</span>全局内置函数</a></span>
+</li>
+</ul>
+</li>
+<li>
+<span><a href="#元组" data-toc-modified-id="元组-2.2"><span class="toc-item-num">2.2&nbsp;&nbsp;</span>元组</a></span>
+</li>
+<li>
+<span><a href="#高效的推导式子" data-toc-modified-id="高效的推导式子-2.3"><span class="toc-item-num">2.3&nbsp;&nbsp;</span>高效的推导式子</a></span>
+<ul class="toc-item">
+<li>
+<span><a href="#方法与函数" data-toc-modified-id="方法与函数-2.3.1"><span class="toc-item-num">2.3.1&nbsp;&nbsp;</span>方法与函数</a></span>
+</li>
+<li>
+<span><a href="#使用列表推导实现嵌套列表的平铺" data-toc-modified-id="使用列表推导实现嵌套列表的平铺-2.3.2"><span class="toc-item-num">2.3.2&nbsp;&nbsp;</span>使用列表推导实现嵌套列表的平铺</a></span>
+</li>
+<li>
+<span><a href="#多条件组合构造特定列表" data-toc-modified-id="多条件组合构造特定列表-2.3.3"><span class="toc-item-num">2.3.3&nbsp;&nbsp;</span>多条件组合构造特定列表</a></span>
+</li>
+<li>
+<span><a href="#字典推导式" data-toc-modified-id="字典推导式-2.3.4"><span class="toc-item-num">2.3.4&nbsp;&nbsp;</span>字典推导式</a></span>
+</li>
+<li>
+<span><a href="#集合推导式" data-toc-modified-id="集合推导式-2.3.5"><span class="toc-item-num">2.3.5&nbsp;&nbsp;</span>集合推导式</a></span>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<span><a href="#函数" data-toc-modified-id="函数-3"><span class="toc-item-num">3&nbsp;&nbsp;</span>函数</a></span>
+<ul class="toc-item">
+<li>
+<ul class="toc-item">
+<li>
+<span><a href="#函数文档的构建" data-toc-modified-id="函数文档的构建-3.0.1"><span class="toc-item-num">3.0.1&nbsp;&nbsp;</span>函数文档的构建</a></span>
+</li>
+</ul>
+</li>
+<li>
+<span><a href="#函数的传递" data-toc-modified-id="函数的传递-3.1"><span class="toc-item-num">3.1&nbsp;&nbsp;</span>函数的传递</a></span>
+<ul class="toc-item">
+<li>
+<span><a href="#关键字参数" data-toc-modified-id="关键字参数-3.1.1"><span class="toc-item-num">3.1.1&nbsp;&nbsp;</span>关键字参数</a></span>
+</li>
+<li>
+<span><a href="#可变参数" data-toc-modified-id="可变参数-3.1.2"><span class="toc-item-num">3.1.2&nbsp;&nbsp;</span>可变参数</a></span>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<section id="jupyter-中的魔法函数" class="level2">
+<h2 class="anchored" data-anchor-id="jupyter-中的魔法函数">jupyter 中的魔法函数</h2>
+<p>魔法函数：IPython中预先定义好的具备特定功能的函数被放入Jupyter中使用。</p>
+<p>魔法函数是Ipython中特有的函数，并非Python内置函数，在其他环境就不行了。</p>
+<div class="cell" data-execution_count="10">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>np.random.seed(<span class="dv">1</span>)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.random.rand(<span class="dv">10</span>)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> np.random.rand(<span class="dv">10</span>)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>colors <span class="op">=</span> np.random.rand(<span class="dv">10</span>)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>matplotlib qt</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>plt.scatter(x,y,c <span class="op">=</span> colors,alpha<span class="op">=</span><span class="fl">0.7</span>)</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="co">#plt.show()</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="10">
+<pre><code>&lt;matplotlib.collections.PathCollection at 0x7fd0a936b970&gt;</code></pre>
+</div>
+</div>
+<p>魔法函数一种是面向行的(line magic)，以一个百分号(%)开头，其作用范围就是这个魔法函数当前行，</p>
+<section id="lsmagic" class="level3">
+<h3 class="anchored" data-anchor-id="lsmagic">%lsmagic</h3>
+<p>可用于查询jupyter中的各种魔法函数。</p>
+<div class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>lsmagic</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="5">
+<pre><code>Available line magics:
+%alias  %alias_magic  %autoawait  %autocall  %automagic  %autosave  %bookmark  %cat  %cd  %clear  %colors  %conda  %config  %connect_info  %cp  %debug  %dhist  %dirs  %doctest_mode  %ed  %edit  %env  %gui  %hist  %history  %killbgscripts  %ldir  %less  %lf  %lk  %ll  %load  %load_ext  %loadpy  %logoff  %logon  %logstart  %logstate  %logstop  %ls  %lsmagic  %lx  %macro  %magic  %man  %matplotlib  %mkdir  %more  %mv  %notebook  %page  %pastebin  %pdb  %pdef  %pdoc  %pfile  %pinfo  %pinfo2  %pip  %popd  %pprint  %precision  %prun  %psearch  %psource  %pushd  %pwd  %pycat  %pylab  %qtconsole  %quickref  %recall  %rehashx  %reload_ext  %rep  %rerun  %reset  %reset_selective  %rm  %rmdir  %run  %save  %sc  %set_env  %store  %sx  %system  %tb  %time  %timeit  %unalias  %unload_ext  %who  %who_ls  %whos  %xdel  %xmode
+
+Available cell magics:
+%%!  %%HTML  %%SVG  %%bash  %%capture  %%debug  %%file  %%html  %%javascript  %%js  %%latex  %%markdown  %%perl  %%prun  %%pypy  %%python  %%python2  %%python3  %%ruby  %%script  %%sh  %%svg  %%sx  %%system  %%time  %%timeit  %%writefile
+
+Automagic is ON, % prefix IS NOT needed for line magics.</code></pre>
+</div>
+</div>
+</section>
+<section id="matplotlib-inline-函数" class="level3">
+<h3 class="anchored" data-anchor-id="matplotlib-inline-函数">%matplotlib inline 函数</h3>
+<p>inline模式，就是告诉Ipython绘图直接显示在当前网页中，<code>plt.show()</code>可省略。但其out中会多出关于该output的adress</p>
+<p>inline之后有一个对标参数qt，使用这个，就可以使得代码构造的图形是独立窗口显示的。可实现拖拽等。</p>
+</section>
+<section id="timeit-函数" class="level3">
+<h3 class="anchored" data-anchor-id="timeit-函数">% timeit 函数</h3>
+<p>提供某行代码等执行计时服务，评估机器学习算法的性能有用</p>
+<div class="cell" data-execution_count="11">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>timeit area <span class="op">=</span> (<span class="dv">40</span><span class="op">*</span>np.random.rand(<span class="dv">20</span>))<span class="op">**</span><span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>4.16 µs ± 46.3 ns per loop (mean ± std. dev. of 7 runs, 100,000 loops each)</code></pre>
+</div>
+</div>
+<p>translation：对于代码<code>area = (40*np.random.rand(20))**2</code>运行7轮，每轮运行100000个循环，均值6.6微秒</p>
+<p>改变循环次：添加参数</p>
+<div class="cell" data-execution_count="17">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>timeit <span class="op">-</span>n100 area <span class="op">=</span> (<span class="dv">40</span><span class="op">*</span>np.random.rand(<span class="dv">20</span>))<span class="op">**</span><span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>The slowest run took 4.02 times longer than the fastest. This could mean that an intermediate result is being cached.
+25 µs ± 14.7 µs per loop (mean ± std. dev. of 7 runs, 100 loops each)</code></pre>
+</div>
+</div>
+</section>
+<section id="writefile函数" class="level3">
+<h3 class="anchored" data-anchor-id="writefile函数">%%writefile函数</h3>
+<p>Jupyter代码块中的代码一块一块的复制到IDE中，保存为Python源文件。 <code>%%writefile</code>就是做这个的。 通过该魔法函数的前面两个就是一个整个代码块作为作用域，</p>
+<div class="cell" data-execution_count="20">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span> pwd</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>/Users/a182501</code></pre>
+</div>
+</div>
+<p>shell命令：命令行和计算机进行文本交互的命令方式，Jupyter中之遥加上一个<code>!</code>就可以执行shell命令</p>
+<div class="cell" data-execution_count="22">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>files <span class="op">=</span> <span class="op">!</span>ls</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(files)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>['1.csv', '111.Rmd', '123.csv', '3.py', '6 linear reg.Rmd', 'Applications', 'CAPM_python_realization.ipynb', 'Calibre Library', 'DIR', 'Desktop', 'Desktop.pem', 'Documents', 'Downloads', 'E:\\工作簿1.csv', 'Figure_1.png', 'Julia入门.ipynb', 'LAB$.docx', 'LAB$.tex', 'LAB4.R', 'Library', 'Movies', 'Music', 'Nutstore Files', 'NutstoreCloudBridge', 'Pictures', 'PycharmProjects', 'RevMan tutorial', 'R语言进阶步骤.ipynb', 'Sites', 'U.tex', 'Untitled-1.py', 'Untitled-1.tex', 'Untitled-2.bcf', 'Untitled-2.log', 'Untitled-2.pdf', 'Untitled-2.tex', 'Untitled.R', 'Untitled.Rmd', 'Untitled.docx', 'Untitled.ipynb', 'Untitled.pdf', 'Untitled0702.tex', 'Untitled1.ipynb', 'Untitled2.Rmd', 'Untitled2.ipynb', 'Zotero', 'a182501.Rproj', 'abc.yml', 'abc2.yml', 'airbnb_python_kaggle.ipynb', 'bernoulli+bayes+likehood.R', 'bin', 'blog', 'cancer.csv', 'cd', 'ciation.json', 'citespace', 'citespace.projects.txt', 'class.csv', 'cm2_mod.R', 'cm_mod.R', 'colors-bar.pdf', 'consumption1.pdf', 'consumption1.tex', 'cv.docx', 'd:pythonpython37libsite-packages', 'data', 'data1964al.xy', 'data\\导出5.csv', 'datas', 'diabetes.csv', 'die_mod.R', 'dismap_mod.R', 'file=..', 'ews.csv', 'geos_mod.R', 'git', 'hello_bundle.zip', 'hello_mod.R', 'house_inf.csv', 'iCloud云盘（归档）', 'import requests.py', 'jianqi.doc', 'jianqi.txt', 'jianqinb.tex', 'julia-1.7.2-linux-i686.tar.gz', 'julia-1.7.2-linux-x86_64.tar.gz', 'julia-1.7.2-mac64.tar.gz', 'lab3.Rmd', 'lab3.md', 'lab3_files', 'lab4.Rmd', 'lab40615.R', 'lab4_0615.Rmd', 'lat_mod.R', 'lianjia_ershou_futian_100.xlsx', 'lianjia_ershou_futian_3.csv', 'list1.txt', 'machine learning.ipynb', 'mydemo.Rmd', 'netural net training.ipynb', 'news.csv', 'opt', 'pfl-data.txt', 'pfl-init2.txt', 'pfl-model.txt', 'plot_grid.R', 'print("hhh").py', 'print("hhhelll").py', 'print("ssss").py', 'project', 'pythonProject', 'python_map_folium.ipynb', 'python学习笔记.ipynb', 'rent.csv', 'rstan.R', 's.yml', 'seaborn-data', 'sensors', 'sppa_mod.R', 'std_mod.R', 'stock_price.csv', 'test.pod', 'test.txt', 'tk.csv', 'tmdb250.ipynb', 'untitled1', 'vecstore.txt', 'vis_mod.R', 'wget-log', '学习.ipynb', '其他.pod', '随意.py', '导出5.csv', '数据集', '未命名-1.tex', '未命名.ipynb', '文件名.png', '工作簿1.csv', '装修项目.pod', '斐波那契.py', '聚类分析图.R', '相关性分析.doc', '劳动生产率.md', '社会网络分析.ipynb', '抓取新浪财经新闻.R']</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="数据类型" class="level2">
+<h2 class="anchored" data-anchor-id="数据类型">数据类型</h2>
+<p>算法(algorithm)+数据结构(data structure)=程序(program)</p>
+<p>对于字符串，可以使用很多有用的方法(method)，通过dir命令来查看相关的方法</p>
+<div class="cell" data-execution_count="24">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="bu">dir</span>(<span class="bu">str</span>)  <span class="co">#查看字符串对象的方法</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="24">
+<pre><code>['__add__',
+ '__class__',
+ '__contains__',
+ '__delattr__',
+ '__dir__',
+ '__doc__',
+ '__eq__',
+ '__format__',
+ '__ge__',
+ '__getattribute__',
+ '__getitem__',
+ '__getnewargs__',
+ '__gt__',
+ '__hash__',
+ '__init__',
+ '__init_subclass__',
+ '__iter__',
+ '__le__',
+ '__len__',
+ '__lt__',
+ '__mod__',
+ '__mul__',
+ '__ne__',
+ '__new__',
+ '__reduce__',
+ '__reduce_ex__',
+ '__repr__',
+ '__rmod__',
+ '__rmul__',
+ '__setattr__',
+ '__sizeof__',
+ '__str__',
+ '__subclasshook__',
+ 'capitalize',
+ 'casefold',
+ 'center',
+ 'count',
+ 'encode',
+ 'endswith',
+ 'expandtabs',
+ 'find',
+ 'format',
+ 'format_map',
+ 'index',
+ 'isalnum',
+ 'isalpha',
+ 'isascii',
+ 'isdecimal',
+ 'isdigit',
+ 'isidentifier',
+ 'islower',
+ 'isnumeric',
+ 'isprintable',
+ 'isspace',
+ 'istitle',
+ 'isupper',
+ 'join',
+ 'ljust',
+ 'lower',
+ 'lstrip',
+ 'maketrans',
+ 'partition',
+ 'removeprefix',
+ 'removesuffix',
+ 'replace',
+ 'rfind',
+ 'rindex',
+ 'rjust',
+ 'rpartition',
+ 'rsplit',
+ 'rstrip',
+ 'split',
+ 'splitlines',
+ 'startswith',
+ 'strip',
+ 'swapcase',
+ 'title',
+ 'translate',
+ 'upper',
+ 'zfill']</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="25">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="bu">help</span>(<span class="bu">str</span>.split)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Help on method_descriptor:
+
+split(self, /, sep=None, maxsplit=-1)
+    Return a list of the words in the string, using sep as the delimiter string.
+    
+    sep
+      The delimiter according which to split the string.
+      None (the default value) means split according to any whitespace,
+      and discard empty strings from the result.
+    maxsplit
+      Maximum number of splits to do.
+      -1 (the default value) means no limit.
+</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>方法</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="31">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>str_1 <span class="op">=</span> <span class="st">"I love CUFE"</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>str_1.split(<span class="st">" "</span>)  <span class="co">#.split() the '.' to pipe the parameter to split()</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="co">#return the list</span></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>sep_1<span class="op">=</span>str_1.split(<span class="st">" "</span>)</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(sep_1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>['I', 'love', 'CUFE']</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="75">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>sep_1.add(<span class="st">"s"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-error">
+<pre><code>AttributeError: 'list' object has no attribute 'add'</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="29">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(sep_1[<span class="dv">2</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>CUFE</code></pre>
+</div>
+</div>
+<section id="title" class="level4">
+<h4 class="anchored" data-anchor-id="title">title</h4>
+<div class="cell" data-execution_count="32">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>str_2<span class="op">=</span> <span class="st">"hello world hello python"</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>str_2.title()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="32">
+<pre><code>'Hello World Hello Python'</code></pre>
+</div>
+</div>
+</section>
+<section id="format" class="level4">
+<h4 class="anchored" data-anchor-id="format">format()</h4>
+<p>这个通过字符串中的花括号和冒号，代替早期C语言中的格式化输出界定符号<code>%</code>，<code>format()</code>不限参数个数，显示位置可以不同于出现的顺序</p>
+<div class="cell" data-execution_count="35">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co">"{1} {0}"</span>.<span class="bu">format</span>(<span class="st">"hello"</span>,<span class="st">"python"</span>)  <span class="co">#中间的空格也会被输出</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="35">
+<pre><code>'python hello'</code></pre>
+</div>
+</div>
+</section>
+<section id="list" class="level3">
+<h3 class="anchored" data-anchor-id="list">list</h3>
+<p>相当于C中的数组，创建不复杂。</p>
+<div class="cell" data-execution_count="39">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>list1 <span class="op">=</span> []</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="41">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="bu">type</span>(list1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="41">
+<pre><code>list</code></pre>
+</div>
+</div>
+<p>python列表中各个数据项的类型不需要都是相同的。</p>
+<div class="cell" data-execution_count="42">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>list1 <span class="op">=</span> [<span class="st">'math'</span>,<span class="st">"中文"</span>,<span class="dv">99</span>,<span class="dv">20</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="43">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>list1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="43">
+<pre><code>['math', '中文', 99, 20]</code></pre>
+</div>
+</div>
+<p>列表内部是可变的（mutable）</p>
+<div class="cell" data-execution_count="54">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>list1<span class="op">=</span>[<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">6</span>,<span class="dv">8</span>,<span class="dv">9</span>,<span class="dv">11</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="56">
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>list1[:<span class="dv">4</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="56">
+<pre><code>[1, 2, 3, 4]</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="57">
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>list1[<span class="dv">0</span>:<span class="dv">9</span>:<span class="dv">2</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="57">
+<pre><code>[1, 3, 6, 9]</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="60">
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>list1[::<span class="op">-</span><span class="dv">1</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="60">
+<pre><code>[11, 9, 8, 6, 4, 3, 2, 1]</code></pre>
+</div>
+</div>
+<section id="添加列表元素" class="level4">
+<h4 class="anchored" data-anchor-id="添加列表元素">添加列表元素</h4>
+<ul>
+<li><code>append()</code>在列表末尾添加一个新元素。</li>
+<li><code>insert()</code>在列表的指定索引位置插入一个元素。</li>
+<li><code>extend()</code>把一个列表整体扩展添加到另外一个列表尾部</li>
+</ul>
+<p>都是属于原地操作(in place)，被操作对象的列表的内存地址原封不动，不会因为函数的作用而发生改变</p>
+</section>
+<section id="删除列表元素" class="level4">
+<h4 class="anchored" data-anchor-id="删除列表元素">删除列表元素</h4>
+<ul>
+<li><code>pop()</code></li>
+<li><code>remove()</code></li>
+<li><code>clear()</code></li>
+</ul>
+</section>
+<section id="全局内置函数" class="level4">
+<h4 class="anchored" data-anchor-id="全局内置函数">全局内置函数</h4>
+<p>除了列表这个数据类型本身自带的函数，Python的内置函数也可以对列表进行操作。也就是说不是list独有的。</p>
+<div class="cell" data-execution_count="62">
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="bu">dir</span>(<span class="bu">list</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="62">
+<pre><code>['__add__',
+ '__class__',
+ '__class_getitem__',
+ '__contains__',
+ '__delattr__',
+ '__delitem__',
+ '__dir__',
+ '__doc__',
+ '__eq__',
+ '__format__',
+ '__ge__',
+ '__getattribute__',
+ '__getitem__',
+ '__gt__',
+ '__hash__',
+ '__iadd__',
+ '__imul__',
+ '__init__',
+ '__init_subclass__',
+ '__iter__',
+ '__le__',
+ '__len__',
+ '__lt__',
+ '__mul__',
+ '__ne__',
+ '__new__',
+ '__reduce__',
+ '__reduce_ex__',
+ '__repr__',
+ '__reversed__',
+ '__rmul__',
+ '__setattr__',
+ '__setitem__',
+ '__sizeof__',
+ '__str__',
+ '__subclasshook__',
+ 'append',
+ 'clear',
+ 'copy',
+ 'count',
+ 'extend',
+ 'index',
+ 'insert',
+ 'pop',
+ 'remove',
+ 'reverse',
+ 'sort']</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="69">
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>fruits<span class="op">=</span>[<span class="st">'organge'</span>,<span class="st">'apple'</span>,<span class="st">'banana'</span>,<span class="st">'pear'</span>]</span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a><span class="bu">sorted</span>(fruits)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="69">
+<pre><code>['apple', 'banana', 'organge', 'pear']</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="70">
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(fruits)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>['organge', 'apple', 'banana', 'pear']</code></pre>
+</div>
+</div>
+<p>用了sort内置函就会改变原有数据，直接在原有数据上操作。</p>
+<div class="cell" data-execution_count="72">
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>fruits.sort()</span>
+<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(fruits)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>['apple', 'banana', 'organge', 'pear']</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="97">
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>fruits.append(<span class="st">"建祺"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="98">
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="bu">max</span>(fruits)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="98">
+<pre><code>'建祺'</code></pre>
+</div>
+</div>
+<ul>
+<li><code>cmp(list1,list2)</code>比较两个列表的元素</li>
+<li><code>list(seq)</code>将元组转化为列表</li>
+<li><code>zip(list1,list2)</code>将多个列表元素组合成一个个的元组</li>
+</ul>
+</section>
+</section>
+<section id="元组" class="level3">
+<h3 class="anchored" data-anchor-id="元组">元组</h3>
+<p>不同于列表的标识，元组使用一对圆括号将元素囊括其中。</p>
+<div class="cell" data-execution_count="79">
+<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a>tup1 <span class="op">=</span> ()</span>
+<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a><span class="bu">type</span>(tup1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="79">
+<pre><code>tuple</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="81">
+<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a>tup1 <span class="op">=</span> (<span class="dv">100</span>,)<span class="co">#只有一个元素在后面加一个逗号</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="高效的推导式子" class="level3">
+<h3 class="anchored" data-anchor-id="高效的推导式子">高效的推导式子</h3>
+<p>又称为解析式，python中非常简洁地按照某种规则，以一个数据序列为基础，推导出另一个新的数据序列。</p>
+<p>[生成表达式 for 变量 in 序列或迭代对象]</p>
+<p>最外层的括号表示这个结果是一个列表。方括号内的描述的列表推导式相当于一个循环，只不过形式上更加简洁。</p>
+<div class="cell" data-execution_count="84">
+<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a>alist <span class="op">=</span> [x<span class="op">**</span><span class="dv">2</span> <span class="cf">for</span> x <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">4</span>)]</span>
+<span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(alist)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[0, 1, 4, 9]</code></pre>
+</div>
+</div>
+<p>filter that dont meet the requirement</p>
+<div class="cell" data-execution_count="87">
+<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a>a_list <span class="op">=</span> [<span class="dv">1</span>,<span class="st">'4'</span>,<span class="st">'9'</span>,<span class="st">'a'</span>,<span class="dv">0</span>,<span class="dv">6</span>,<span class="st">'hello'</span>]</span>
+<span id="cb57-2"><a href="#cb57-2" aria-hidden="true" tabindex="-1"></a>squared_ints <span class="op">=</span> [e<span class="op">**</span><span class="dv">2</span> <span class="cf">for</span> e <span class="kw">in</span> a_list <span class="cf">if</span> <span class="bu">type</span>(e)<span class="op">==</span><span class="bu">int</span>]</span>
+<span id="cb57-3"><a href="#cb57-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(squared_ints)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1, 0, 36]</code></pre>
+</div>
+</div>
+<section id="方法与函数" class="level4">
+<h4 class="anchored" data-anchor-id="方法与函数">方法与函数</h4>
+<div class="cell" data-execution_count="100">
+<div class="sourceCode cell-code" id="cb59"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="bu">type</span>(<span class="bu">print</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="100">
+<pre><code>builtin_function_or_method</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="102">
+<div class="sourceCode cell-code" id="cb61"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true" tabindex="-1"></a><span class="bu">type</span>(<span class="bu">max</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="102">
+<pre><code>builtin_function_or_method</code></pre>
+</div>
+</div>
+</section>
+<section id="使用列表推导实现嵌套列表的平铺" class="level4">
+<h4 class="anchored" data-anchor-id="使用列表推导实现嵌套列表的平铺">使用列表推导实现嵌套列表的平铺</h4>
+<p>将所有的列表中的列表展开：</p>
+<div class="cell" data-execution_count="90">
+<div class="sourceCode cell-code" id="cb63"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a>vec <span class="op">=</span> [[<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>],[<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>],[<span class="dv">5</span>,<span class="dv">6</span>,<span class="dv">7</span>]]</span>
+<span id="cb63-2"><a href="#cb63-2" aria-hidden="true" tabindex="-1"></a>flat_vec <span class="op">=</span> [num <span class="cf">for</span> elem <span class="kw">in</span> vec <span class="cf">for</span> num <span class="kw">in</span> elem]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="91">
+<div class="sourceCode cell-code" id="cb64"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(flat_vec)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1, 2, 3, 3, 4, 5, 5, 6, 7]</code></pre>
+</div>
+</div>
+</section>
+<section id="多条件组合构造特定列表" class="level4">
+<h4 class="anchored" data-anchor-id="多条件组合构造特定列表">多条件组合构造特定列表</h4>
+<p>列表推导包含一对括号，在括号内有一个输出表达式，表达式之后跟着一条for语句，之后就能构造出多种的列表推导。</p>
+<div class="cell" data-execution_count="93">
+<div class="sourceCode cell-code" id="cb66"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a>new_list <span class="op">=</span> [(x,y) <span class="cf">for</span> x <span class="kw">in</span> [<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>] <span class="cf">for</span> y <span class="kw">in</span> [<span class="dv">3</span>,<span class="dv">1</span>,<span class="dv">4</span>] <span class="cf">if</span> x <span class="op">!=</span> y]</span>
+<span id="cb66-2"><a href="#cb66-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(new_list)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[(1, 3), (1, 4), (2, 3), (2, 1), (2, 4), (3, 1), (3, 4)]</code></pre>
+</div>
+</div>
+</section>
+<section id="字典推导式" class="level4">
+<h4 class="anchored" data-anchor-id="字典推导式">字典推导式</h4>
+<div class="cell" data-execution_count="105">
+<div class="sourceCode cell-code" id="cb68"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a>mcase <span class="op">=</span>{<span class="st">'a'</span>:<span class="dv">10</span>,<span class="st">'b'</span>:<span class="dv">30</span>,<span class="st">'c'</span>:<span class="dv">50</span>}</span>
+<span id="cb68-2"><a href="#cb68-2" aria-hidden="true" tabindex="-1"></a>kv_exchange <span class="op">=</span>{v:k <span class="cf">for</span> k,v <span class="kw">in</span> mcase.items()}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="106">
+<div class="sourceCode cell-code" id="cb69"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb69-1"><a href="#cb69-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(kv_exchange)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>{10: 'a', 30: 'b', 50: 'c'}</code></pre>
+</div>
+</div>
+</section>
+<section id="集合推导式" class="level4">
+<h4 class="anchored" data-anchor-id="集合推导式">集合推导式</h4>
+<p>核心是一对花括号，字典内的元素需以“键/值对”形式出现</p>
+</section>
+</section>
+</section>
+<section id="函数" class="level2">
+<h2 class="anchored" data-anchor-id="函数">函数</h2>
+<section id="函数文档的构建" class="level4">
+<h4 class="anchored" data-anchor-id="函数文档的构建">函数文档的构建</h4>
+<p>大规模协助是常态，代码是程序员的思维方式的一种物化形式。</p>
+</section>
+<section id="函数的传递" class="level3">
+<h3 class="anchored" data-anchor-id="函数的传递">函数的传递</h3>
+<section id="关键字参数" class="level4">
+<h4 class="anchored" data-anchor-id="关键字参数">关键字参数</h4>
+</section>
+<section id="可变参数" class="level4">
+<h4 class="anchored" data-anchor-id="可变参数">可变参数</h4>
+<p>函数调用时候，参数的个数不固定，比如在C中，可变参数较为普遍。</p>
+<div class="cell" data-execution_count="108">
+<div class="sourceCode cell-code" id="cb71"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb71-1"><a href="#cb71-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> mySum(<span class="op">*</span>args):</span>
+<span id="cb71-2"><a href="#cb71-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">sum</span> <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb71-3"><a href="#cb71-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">0</span>,<span class="bu">len</span>(args)):</span>
+<span id="cb71-4"><a href="#cb71-4" aria-hidden="true" tabindex="-1"></a>        <span class="bu">sum</span> <span class="op">=</span> <span class="bu">sum</span> <span class="op">+</span> args[i]</span>
+<span id="cb71-5"><a href="#cb71-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="bu">sum</span></span>
+<span id="cb71-6"><a href="#cb71-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(mySum(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>))</span>
+<span id="cb71-7"><a href="#cb71-7" aria-hidden="true" tabindex="-1"></a><span class="co">#python is not strict with parameters' forms</span></span>
+<span id="cb71-8"><a href="#cb71-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(mySum(<span class="fl">20.1</span>,<span class="fl">23.5</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>15
+43.6</code></pre>
+</div>
+</div>
+
+
+</section>
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

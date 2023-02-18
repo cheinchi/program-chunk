@@ -1,0 +1,37 @@
+---
+title: "Post With Code"
+author: "Harlow Malloc"
+date: "2023-02-17"
+categories: [news, code, analysis]
+image: "image.jpg"
+---
+
+This is a post with executable code.
+
+
+
+```{r}
+#| column: page
+
+knitr::kable(
+  mtcars[1:6, 1:10]
+)
+```
+
+```{r}
+library("ggplot2")
+ggplot(data=mtcars)+
+    geom_point(aes(x=mpg,y=cyl,color=gear))
+```
+
+
+- [www.jianqihuang.com](www.jianqihuang.com) is my personal website.
+
+### loading the python code
+
+```{python}
+print("x=1")
+import numpy as np
+x = np.array([11,1,2])
+print(x)
+```

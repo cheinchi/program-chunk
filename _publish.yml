@@ -1,0 +1,4 @@
+- source: project
+  netlify:
+    - id: 91651d3c-bfee-4ed9-ab51-4c4828c550b2
+      url: 'https://papaya-bonbon-75da27.netlify.app'

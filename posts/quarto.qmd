@@ -1,0 +1,45 @@
+---
+title: Using quarto
+date: 2023-02-17
+theme:
+  light: flatly
+  dark: darkly
+---
+
+## adding Video 
+Embeding videos in documents `.qmd` using the `{{< video video_url>}}`
+We could embed the Youtube video like this:
+
+```{}
+{{< video https://www.youtube.com/embed/wo9vZccmqwc >}}
+```
+
+```{}
+{{< video https://players.brightcove.net/1460825906/default_default/index.html?videoId=5988531335001 >}}
+```
+
+{{< video https://players.brightcove.net/1460825906/default_default/index.html?videoId=5988531335001 >}}
+
+
+- The parameter like `title`,`start`, `width` and `height` could be adjusted.
+    - `start` set the start time of the video
+- The local file like `.mp4` format file be embeded 
+
+
+```{}
+{{< video local-video.mp4 >}}
+{{< video https://www.youtube.com/embed/wo9vZccmqwc >}}
+{{< video https://vimeo.com/548291297 >}}
+{{< video https://youtu.be/wo9vZccmqwc width="400" height="300" >}}
+{{< video https://www.youtube.com/embed/wo9vZccmqwc
+    title="What is the CERN?"
+    start="116"
+    aspect-ratio="21x9" 
+>}}
+```
+
+
+
+## Adding slides 
+
+{{< slide https://www.jianqihuang.com/slides/bagging-22-10/bagging10-22#1 width="60%" height="60%" >}}
